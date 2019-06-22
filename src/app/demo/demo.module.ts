@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ButtonsComponent } from './buttons/buttons.component';
 import { DemoRoutingModule } from './demo-routing.module';
+import { FlexboxComponent } from './flexbox/flexbox.component';
 
 
 @NgModule({
@@ -17,7 +18,7 @@ import { DemoRoutingModule } from './demo-routing.module';
         DemoRoutingModule
     ],
     exports: [],
-    declarations: [ButtonsComponent],
+    declarations: [ButtonsComponent, FlexboxComponent],
     providers: [],
 })
 export class DemoModule { }
