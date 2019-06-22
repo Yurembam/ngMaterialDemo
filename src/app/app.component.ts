@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ngMaterialDemo';
+  checked = false;
+  indeterminate = false;
+  align = 'start';
+  disabled = false;
 }

@@ -15,9 +15,10 @@ const SMALL_WIDTH_BREAKPOINT = 720;
 export class SidebarComponent implements OnInit, OnDestroy {
 
   matcher: MediaQueryList;
-
   private mediaMatcherQuery: string = `(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`;
   users: Observable<User[]>;
+  isDarkTheme: boolean = false;
+  dir: string = 'ltr';
 
   constructor(public mediaMatcher: MediaMatcher,
     private userService: UserService) { }
@@ -38,6 +39,15 @@ export class SidebarComponent implements OnInit, OnDestroy {
   // myListener(event) {
   //   console.log(event.matches ? 'match' : 'no match');
   // }
+
+  toggleTheme() {
+    this.isDarkTheme = !this.isDarkTheme;
+  }
+
+  toggleDir() {
+    this.dir = this.dir == 'ltr' ? 'rtl' : 'ltr';
+    this.sidenav.toggle().then(() => this.sidenav.toggle());
+  }
 
   isScreenSmall(): boolean {
     return this.matcher.matches;
