@@ -1,5 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { UserService } from '../../services/user.service';
+import { Observable } from 'rxjs';
+import { User } from '../../models/user';
+import { MatSidenav } from '@angular/material';
 
 const SMALL_WIDTH_BREAKPOINT = 720;
 
@@ -13,12 +17,18 @@ export class SidebarComponent implements OnInit, OnDestroy {
   matcher: MediaQueryList;
 
   private mediaMatcherQuery: string = `(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`;
+  users: Observable<User[]>;
 
-  constructor(public mediaMatcher: MediaMatcher) { }
+  constructor(public mediaMatcher: MediaMatcher,
+    private userService: UserService) { }
+
+  @ViewChild(MatSidenav, { static: false }) sidenav: MatSidenav;
 
   ngOnInit() {
     this.matcher = this.mediaMatcher.matchMedia(this.mediaMatcherQuery);
     //this.matcher.addListener(this.myListener);
+    this.users = this.userService.users;
+    this.userService.loadAll();
   }
 
   ngOnDestroy() {
