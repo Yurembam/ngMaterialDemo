@@ -4,11 +4,21 @@
     <mat-toolbar color="primary">
       Contacts
     </mat-toolbar>
-    <mat-list *ngFor="let user of users | async">
-      <a href="#" [routerLink]="['/contactmanager', user.id]">
-        <mat-icon svgIcon="{{user.avatar}}"></mat-icon>{{user.name}}
-      </a>
-    </mat-list>
+    <mat-nav-list>
+      <mat-list-item *ngFor="let user of users | async">
+        <mat-icon svgIcon="{{user.avatar}}"></mat-icon>
+        <a matLine href="#" [routerLink]="['/contactmanager', user.id]">{{user.name}}</a>
+        <button mat-icon-button>
+          <mat-icon>info</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-nav-list>
+
+    <!-- <mat-list *ngFor="let user of users | async">
+      <mat-list-item [routerLink]="['/contactmanager', user.id]" > 
+        <mat-icon svgIcon="{{user.avatar}}"></mat-icon>{{user.name}} 
+      </mat-list-item>
+    </mat-list> -->
   </mat-sidenav>
   <mat-sidenav-content class="app-sidenav-content">
     <app-toolbar (toggleTheme)="toggleTheme()" (toggleSidenav)="sidenav.toggle()" (toggleDir)="toggleDir()">
